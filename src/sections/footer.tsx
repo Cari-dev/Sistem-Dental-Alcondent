@@ -1,4 +1,3 @@
-import { Button } from "@/components/button"
 import { Phone, Mail, Clock, Facebook, Twitter, Instagram, Linkedin } from "lucide-react"
 
 export default function Footer() {
