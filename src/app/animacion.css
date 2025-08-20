@@ -1,0 +1,22 @@
+.animation-ltr {
+    position: relative; /* necesario para que ::after se posicione relativo al botón */
+    display: inline-block; 
+    overflow: hidden; /* evita que se salga el ::after */
+  }
+  
+  .animation-ltr::after {
+    content: ""; /* obligatorio para que se muestre */
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0; 
+    height: 100%;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease; /* animación suave */
+    z-index: -10; /* detrás del texto */
+  }
+  
+  .animation-ltr:hover::after {
+    width: 100%; /* se expande en hover */
+  }
+  
