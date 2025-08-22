@@ -14,14 +14,14 @@ export const Button: React.FC<ButtonProps> = ({ label, variant = "color-primary"
   const variants: Record<string, string> = {
     "color-primary": "bg-primary text-white  focus:ring-gray-400",
     "color-secondary": "bg-secondary text-white  focus:ring-gray-400 hover:bg-primary",
-    "outline-primary": "bg-transparent border border-white text-white  hover:text-white focus:ring-blue-500 hover:border-primary ",
+    "outline-primary": "bg-transparent border border-white text-white  hover:text-white focus:ring-blue-500 hover:border-primary animation-ltr",
     "outline-secondary": "bg-transparent border border-secondary text-secondary hover:text-white focus:ring-blue-500",
   };
 
   return (
     <button
       onClick={onClick}
-      className={`${base} ${variants[variant]} animation-ltr`}
+      className={`${base} ${variants[variant]} `}
     >
       {label}
     </button>

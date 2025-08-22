@@ -23,6 +23,7 @@ export default function Hero() {
         {/* Fallback text for very old browsers */}
         Your browser does not support the video tag.
       </video>
+      <div className="absolute top-0 left-0 w-3/5 h-full -z-10 blur-xl"></div>
       <div className="container mx-auto max-w-6xl px-4 py-20">
         <div className="max-w-2xl">
           {/* Badge */}
@@ -31,7 +32,7 @@ export default function Hero() {
           </div>
 
           {/* Main heading */}
-          <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold text-primary leading-tight mb-6">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary leading-tight mb-6">
           Transformamos sonrisas  
             <br />
           mejoramos vidas.

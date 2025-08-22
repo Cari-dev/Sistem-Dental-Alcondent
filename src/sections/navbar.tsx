@@ -1,6 +1,8 @@
+"use client"
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 interface NavItem {
   label: string;
@@ -21,8 +23,9 @@ interface SocialItem {
 
 const navItems: NavItem[] = [
   { label: "Inicio", href: "/" },
-  { label: "Servicios", href: "/servicios" },
-  { label: "Contacto", href: "/contacto" },
+  { label: "Tratamientos", href: "/Tratamientos" },
+  { label: "Ubicacion", href: "/Ubicacion" },
+  { label: "Contacto", href: "/Contacto" },
 ];
 
 const contactItems: ContactItem[] = [
@@ -37,8 +40,10 @@ const socialItems: SocialItem[] = [
 ];
 
 const Navbar: React.FC = () => {
+  const [hovered, setHovered] = React.useState<string | null>(null);
+
   return (
-    <div className="w-full bg-primary sticky top-0 z-50">
+    <div className="w-full bg-primary sticky top-0 z-20">
       {/* Topbar */}
       <div className="flex justify-between max-w-6xl mx-auto px-4 h-12 items-center text-white font-sans">
         {/* Contacto */}
@@ -72,20 +77,39 @@ const Navbar: React.FC = () => {
         <div className="max-w-6xl mx-auto px-4 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center text-xl font-bold">
-            <img src="/alcondent-logo.png" className="size-12" alt="alcondent-logo" />
+            <img src="/images/alcondent-logo.png" className="size-12" alt="alcondent-logo" />
             <span className="ml-2">Alcondent</span>
           </Link>
 
-          {/* Links */}
-          <div className="flex space-x-6">
+          {/* Links con animación */}
+          <div className="flex space-x-6 relative">
             {navItems.map((item) => (
-              <Link
+              <div
                 key={item.href}
-                href={item.href}
-                className="hover:text-secondary transition font-bold tracking-wider"
+                className="relative"
+                onMouseEnter={() => setHovered(item.href)}
+                onMouseLeave={() => setHovered(null)}
               >
-                {item.label}
-              </Link>
+                <Link
+                  href={item.href}
+                  className="transition font-bold tracking-wider relative px-1 z-20"
+                >
+                  {item.label}
+                </Link>
+
+                {/* Animación underline con Framer Motion */}
+                {hovered === item.href && (
+                  <motion.div
+                  layoutId="highlight"
+                  className="absolute inset-0 rounded-md bg-secondary/55 z-10"
+                  initial={{ opacity: 0, scaleX: 0 }}
+                  animate={{ opacity: 1, scaleX: 1 }}
+                  exit={{ opacity: 0, scaleX: 0 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  style={{ transformOrigin: "left" }}
+                  />
+                )}
+              </div>
             ))}
           </div>
         </div>
