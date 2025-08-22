@@ -1,10 +1,16 @@
 "use client"
 import { Plus } from "lucide-react"
-import { motion } from "framer-motion"
+import { motion, Variants } from "framer-motion"
 
-/* eslint-disable @next/next/no-img-element */
+interface Service {
+  image: string
+  title: string
+  description: string
+  link: string
+}
+
 export default function MedicalServices() {
-  const services = [
+  const services: Service[] = [
     {
       image: "images/odontopediatria.webp",
       title: "Odontopediatría",
@@ -41,25 +47,29 @@ export default function MedicalServices() {
       description: "Blanqueamiento, carillas y otros procedimientos para mejorar la apariencia de tu sonrisa.",
       link: "Ver más"
     }
-  ];
+  ]
 
   // Variantes de animación
-  const cardVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.95 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      scale: 1, 
-      transition: { duration: 0.6, ease: "easeOut" }
-    }
+  const variants: Variants = {
+    hidden: { opacity: 0, y: 20, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeInOut", // ✅ ya reconocido
+      },
+    },
   };
+  
 
   return (
     <section className="py-20 bg-primary">
-      <div className="container mx-auto px-4 max-w-6xl ">
+      <div className="container mx-auto px-4 max-w-6xl">
         {/* Section header */}
         <div className="text-center mb-16">
-          <div className="text-sm text-gray-400 font-medium mb-4 tracking-wide uppercase">
+          <div className="text-sm text-gray-300 font-medium mb-4 tracking-wide uppercase">
             NUESTROS SERVICIOS
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-6">
@@ -68,36 +78,40 @@ export default function MedicalServices() {
         </div>
 
         {/* Services grid */}
-        <div className="grid md:grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-2 gap-6">
           {services.map((service, index) => (
             <motion.div
               key={index}
-              className="bg-white rounded-lg shadow-lg h-60 overflow-hidden flex hover:shadow-xl transition-shadow duration-300"
-              variants={cardVariants}
+              className="group bg-white rounded-2xl shadow-md overflow-hidden flex hover:shadow-2xl hover:shadow-secondary/30 transition-all duration-500 relative"
+              variants={variants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }} // se activa al 20% de visibilidad
-              transition={{ delay: index * 0.15 }} // efecto "stagger"
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: index * 0.15 }}
+              whileHover={{ y: -8, scale: 1.02 }}
             >
               {/* Content */}
-              <div className="pl-6 py-6 w-2/3">
-                <h3 className="text-lg font-bold text-primary mb-4">
-                  {service.title}
-                </h3>
-                <p className="text-gray-600 mb-2 text-xs md:text-sm text-balance leading-relaxed ">
-                  {service.description}
-                </p>
-                <button className="flex items-center gap-2 text-secondary font-medium transition-colors cursor-pointer text-xs bg-secondary/10 hover:bg-secondary/20 px-4 py-2 rounded border border-secondary">
+              <div className="pl-6 py-6 w-2/3 flex flex-col justify-between">
+                <div>
+                  <h3 className="text-lg font-bold text-primary mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600 mb-4 text-xs md:text-sm leading-relaxed">
+                    {service.description}
+                  </p>
+                </div>
+                <button className="flex items-center gap-2 text-secondary font-medium transition-all text-xs bg-secondary/10 hover:bg-secondary/20 px-4 py-2 rounded-full border border-secondary">
                   {service.link} <Plus className="w-4 h-4" />
                 </button>
               </div>
 
               {/* Image */}
-              <div className="h-full w-full overflow-hidden" style={{ clipPath: "circle(100% at 100% 50%)" }}>
-                <img
+              <div className="relative w-1/3 h-full overflow-hidden">
+                <motion.img
                   src={service.image}
                   alt={service.title}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover rounded-l-2xl group-hover:scale-110 transition-transform duration-700"
+                  whileHover={{ rotate: 1.5 }}
                 />
               </div>
             </motion.div>
