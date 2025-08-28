@@ -57,7 +57,7 @@ function InfoItem({
 
 export function Location() {
   return (
-    <section className="mx-auto max-w-6xl px-4 py-16">
+    <section className="mx-auto max-w-6xl pl-10 pr-4 py-16">
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Información de la clínica */}
         <div className="flex-1 flex flex-col justify-center gap-4 text-center lg:text-left">

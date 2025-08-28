@@ -88,25 +88,24 @@ export default function MedicalServices() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
               transition={{ delay: index * 0.15 }}
-              whileHover={{ y: -8, scale: 1.02 }}
             >
               {/* Content */}
-              <div className="pl-6 py-6 w-2/3 flex flex-col justify-between">
+              <div className="pl-6 py-6 w-1/2 flex flex-col">
                 <div>
                   <h3 className="text-lg font-bold text-primary mb-3">
                     {service.title}
                   </h3>
-                  <p className="text-gray-600 mb-4 text-xs md:text-sm leading-relaxed">
+                  <p className="text-gray-600  text-xs md:text-sm leading-relaxed">
                     {service.description}
                   </p>
                 </div>
-                <button className="flex items-center gap-2 text-secondary font-medium transition-all text-xs bg-secondary/10 hover:bg-secondary/20 px-4 py-2 rounded-full border border-secondary">
-                  {service.link} <Plus className="w-4 h-4" />
+                <button className="flex items-center gap-2 mt-5 text-secondary font-medium text-sm cursor-pointer">
+                  {service.link} <Plus className="w-6 h-6" />
                 </button>
               </div>
 
               {/* Image */}
-              <div className="relative w-1/3 h-full overflow-hidden">
+              <div className="relative w-2/3 h-60 overflow-hidden" style={{ clipPath: "circle(100% at 100% 50%)" }}>
                 <motion.img
                   src={service.image}
                   alt={service.title}

@@ -1,5 +1,4 @@
-
-
+/* eslint-disable @next/next/no-img-element */
 export default function Details() {
   const details = [
     {

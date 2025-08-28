@@ -13,7 +13,7 @@
     height: 100%;
     background-color: var(--primary-color);
     transition: width 0.3s ease; /* animación suave */
-    z-index: -10; /* detrás del texto */
+    z-index: -5; /* detrás del texto */
   }
   
   .animation-ltr:hover::after {
